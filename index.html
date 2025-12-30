@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy New Year 2026</title>
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        .card {
+            width: 85%;
+            max-width: 350px;
+            background: #111;
+            border: 2px solid #f1c40f;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 20px #f1c40f;
+        }
+        #senderDisplay {
+            font-size: 22px;
+            color: #2ecc71;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .main-gif {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        .name-box {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #f1c40f;
+            background: #fff;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div id="senderDisplay"></div>
+    <img src="20262026-Happy-New-Year-GIF-GG0382026.gif" class="main-gif" alt="New Year 2026">
+    <input type="text" id="userInput" class="name-box" placeholder="Write your name...">
+    <button onclick="generateLink()" class="whatsapp-btn">Wish your friends</button>
+</div>
+
+<script>
+    const params = new URLSearchParams(window.location.search);
+    const nameFromUrl = params.get('name');
+    if (nameFromUrl) {
+        document.getElementById('senderDisplay').innerText = "✨ " + decodeURIComponent(nameFromUrl) + " ✨";
+    }
+
+    function generateLink() {
+        const inputName = document.getElementById('userInput').value.trim();
+        if (!inputName) { alert("Please enter your name!"); return; }
+        const currentUrl = window.location.origin + window.location.pathname;
+        const finalUrl = currentUrl + "?name=" + encodeURIComponent(inputName);
+        const message = `✨ *${inputName}* ne aapke liye kuch khaas bheja hai 🎁\n\nIse dekhne ke liye niche link par click karein 👇\n\n${finalUrl}`;
+        window.open("https://api.whatsapp.com/send?text=" + encodeURIComponent(message));
+    }
+</script>
+
+</body>
+</html>
